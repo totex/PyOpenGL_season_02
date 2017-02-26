@@ -41,7 +41,6 @@ class Camera:
 
         self.update_camera_vectors()
 
-
     def update_camera_vectors(self):
         front = Vector3([0.0, 0.0, 0.0])
         front.x = cos(radians(self.yaw)) * cos(radians(self.pitch))
@@ -49,9 +48,8 @@ class Camera:
         front.z = sin(radians(self.yaw)) * cos(radians(self.pitch))
 
         self.camera_front = vector.normalise(front)
-        self.camera_right = vector.normalise(vector3.cross(self.camera_front, self.camera_up))
+        self.camera_right = vector.normalise(vector3.cross(self.camera_front, Vector3([0.0, 1.0, 0.0])))
         self.camera_up = vector.normalise(vector3.cross(self.camera_right, self.camera_front))
-
 
     def look_at(self, position, target, world_up):
         # 1.Position = known
@@ -59,7 +57,7 @@ class Camera:
         zaxis = vector.normalise(position - target)
         # 3.Get positive right axis vector
         xaxis = vector.normalise(vector3.cross(vector.normalise(world_up), zaxis))
-        # 4.Caculate the camera up vector
+        # 4.Calculate the camera up vector
         yaxis = vector3.cross(zaxis, xaxis)
 
         # create translation and rotation matrix
