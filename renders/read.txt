@@ -1,0 +1,1 @@
+Make sure this folder exists, the render_to_jpg function requires it.  
