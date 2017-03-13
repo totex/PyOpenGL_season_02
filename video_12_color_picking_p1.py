@@ -169,20 +169,18 @@ def main():
 
         for i in range(len(cube_positions)):
             model = matrix44.create_from_translation(cube_positions[i])
+            glUniform3fv(color_loc, 1, cube_colors[i])
             if i == 0:
-                glUniform3fv(color_loc, 1, cube_colors[i])
                 if red_rot:
                     glUniformMatrix4fv(model_loc, 1, GL_FALSE, rot_y * model)
                 else:
                     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
             elif i == 1:
-                glUniform3fv(color_loc, 1, cube_colors[i])
                 if green_rot:
                     glUniformMatrix4fv(model_loc, 1, GL_FALSE, rot_y * model)
                 else:
                     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
             else:
-                glUniform3fv(color_loc, 1, cube_colors[i])
                 if blue_rot:
                     glUniformMatrix4fv(model_loc, 1, GL_FALSE, rot_y * model)
                 else:
